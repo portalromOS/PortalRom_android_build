@@ -44,7 +44,6 @@ PRODUCT_PACKAGES += \
     CaptivePortalLogin \
     CertInstaller \
     clatd \
-    DocumentsUI \
     DownloadProviderUi \
     EasterEgg \
     ExternalStorageProvider \
