@@ -317,8 +317,8 @@ include $(BUILD_SYSTEM)/envsetup.mk
 FIND_LEAVES_EXCLUDES := $(addprefix --prune=, $(SCAN_EXCLUDE_DIRS) .repo .git)
 
 -include vendor/extra/BoardConfigExtra.mk
-ifneq ($(LINEAGE_BUILD),)
-include vendor/portalrom/config/BoardConfigLineage.mk
+ifneq ($(PORTALROM_BUILD),)
+include vendor/portalrom/config/BoardConfigPortalRom.mk
 endif
 
 # The build system exposes several variables for where to find the kernel
@@ -1164,11 +1164,11 @@ dont_bother_goals := out \
 # consistency with those defined in BoardConfig.mk files.
 include $(BUILD_SYSTEM)/android_soong_config_vars.mk
 
-ifneq ($(LINEAGE_BUILD),)
-ifneq ($(wildcard device/lineage/sepolicy/common/sepolicy.mk),)
+ifneq ($(PORTALROM_BUILD),)
+ifneq ($(wildcard device/portalrom/sepolicy/common/sepolicy.mk),)
 ## We need to be sure the global selinux policies are included
 ## last, to avoid accidental resetting by device configs
-$(eval include device/lineage/sepolicy/common/sepolicy.mk)
+$(eval include device/portalrom/sepolicy/common/sepolicy.mk)
 endif
 endif
 
