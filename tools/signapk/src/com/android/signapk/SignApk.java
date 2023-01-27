@@ -36,7 +36,7 @@ import org.conscrypt.OpenSSLProvider;
 
 import com.android.apksig.ApkSignerEngine;
 import com.android.apksig.DefaultApkSignerEngine;
-import com.android.apksig.SigningCertificatePortalRom;
+import com.android.apksig.SigningCertificateLineage;
 import com.android.apksig.Hints;
 import com.android.apksig.apk.ApkUtils;
 import com.android.apksig.apk.MinSdkVersionException;
@@ -1047,7 +1047,7 @@ class SignApk {
         Integer minSdkVersionOverride = null;
         boolean signUsingApkSignatureSchemeV2 = true;
         boolean signUsingApkSignatureSchemeV4 = false;
-        SigningCertificatePortalRom certPortalRom = null;
+        SigningCertificateLineage certPortalRom = null;
 
         int argstart = 0;
         while (argstart < args.length && args[argstart].startsWith("-")) {
@@ -1081,7 +1081,7 @@ class SignApk {
             } else if ("--portalrom".equals(args[argstart])) {
                 File portalromFile = new File(args[++argstart]);
                 try {
-                    certPortalRom = SigningCertificatePortalRom.readFromFile(portalromFile);
+                    certPortalRom = SigningCertificateLineage.readFromFile(portalromFile);
                 } catch (Exception e) {
                     throw new IllegalArgumentException(
                             "Error reading portalrom file: " + e.getMessage());
@@ -1177,7 +1177,7 @@ class SignApk {
                                 .setV2SigningEnabled(signUsingApkSignatureSchemeV2)
                                 .setOtherSignersSignaturesPreserved(false)
                                 .setCreatedBy("1.0 (Android SignApk)")
-                                .setSigningCertificatePortalRom(certPortalRom)
+                                .setSigningCertificateLineage(certPortalRom)
                                 .build()) {
                     // We don't preserve the input APK's APK Signing Block (which contains v2
                     // signatures)
